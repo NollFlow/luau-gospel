@@ -19,6 +19,19 @@ exports.handler = async function(event) {
     const callback = 'netlifySheetsCallback';
     const response = await fetch(`${GOOGLE_SHEETS_URL}?action=list&callback=${callback}&t=${Date.now()}`);
     const text = await response.text();
+
+    if (text.includes('accounts.google.com') || text.includes('ServiceLogin') || text.includes('InteractiveLogin')) {
+      return {
+        statusCode: 200,
+        headers: jsonHeaders(),
+        body: JSON.stringify({
+          ok: false,
+          error: 'GOOGLE_LOGIN_REQUIRED',
+          message: 'O Apps Script esta pedindo login. Em Implantar > Gerenciar implantacoes, o acesso precisa ser Qualquer pessoa.'
+        })
+      };
+    }
+
     const match = text.match(/^netlifySheetsCallback\(([\s\S]*)\);?$/);
     const rows = match ? JSON.parse(match[1]) : [];
 
