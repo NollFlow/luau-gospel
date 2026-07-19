@@ -1,4 +1,4 @@
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwT-jYjnQuxGRrOCafLH94otxgMxi9BVQhdq58RwmcSFHbGkDus0gp7pOjtXE1Tp5GHLA/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxLbQnGVFghN8IdndzJOAlUTrqLa0BMLfjVfDy1TT1eLDjVWIjwukbaBnxZm8_n29jxEA/exec';
 
 exports.handler = async function(event) {
   try {
